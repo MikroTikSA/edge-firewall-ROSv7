@@ -108,8 +108,8 @@ add action=accept chain=prerouting comment="Accept SNMP" dst-address-type=local 
 add action=accept chain=prerouting comment="Accept Discovery" dst-port=5678 in-interface-list=mndp-allowed protocol=udp
 add action=accept chain=prerouting comment="Accept VXLAN internal" dst-port=8472 in-interface-list=!public-in protocol=udp src-address-list=management
 add action=accept chain=prerouting comment="Accept SSH to router" dst-address-type=local dst-port=22 protocol=tcp src-address-list=management 
-add action=accept chain=prerouting comment="Accept SSH by address list to internal" dst-address-type=!local dst-port=22 protocol=tcp src-address-list=ssh-allowed
-add action=accept chain=prerouting comment="Accept SSH by address list to internal" dst-address-type=!local dst-port=22 protocol=tcp dst-address-list=ssh-allowed
+add action=accept chain=prerouting comment="Accept SSH by address list from external source" dst-address-type=!local dst-port=22 protocol=tcp src-address-list=ssh-allowed
+add action=accept chain=prerouting comment="Accept SSH by address list to internal client" dst-address-type=!local dst-port=22 protocol=tcp dst-address-list=ssh-allowed-in
 add action=accept chain=prerouting dst-port=123 protocol=udp src-address-list=time-servers
 add action=accept chain=prerouting protocol=udp src-address-list=time-servers src-port=123
 add action=accept chain=prerouting comment="Accept Winbox to router" dst-address-type=local dst-port=8291 in-interface-list=management protocol=tcp src-address-list=management
