@@ -50,8 +50,8 @@ set enabled=no
 # For added security you can add individual addresses
 add address=196.60.70.0/23 comment="NAP Cape Town BLP" list=bgp-allowed
 add address=196.60.8.0/22 comment="NAP Johannesburg BLP" list=bgp-allowed
-add address=196.223.22.0/24 comment="CINX BLP" list=bgp-allowed
-add address=196.223.14.0/24 comment="JINX BLP" list=bgp-allowed
+add address=196.223.22.0/23 comment="CINX BLP" list=bgp-allowed
+add address=196.223.14.0/23 comment="JINX BLP" list=bgp-allowed
 
 # Add / uncomment your local management ranges
 add address=$ipman comment="Local management range" list=management
@@ -150,3 +150,4 @@ set [find interface=all] forbid=yes
 # Disable IPv6 ND on all ports
 /ipv6 nd
 set [find interface=all] advertise-dns=no disabled=yes
+
