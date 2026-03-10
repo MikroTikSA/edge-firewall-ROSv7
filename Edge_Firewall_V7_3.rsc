@@ -41,7 +41,7 @@ set enabled=no
 /ip socks
 set enabled=no
 /ip ssh
-set allow-none-crypto=no strong-crypto=yes
+set strong-crypto=yes
 /ip upnp
 set enabled=no
 
@@ -91,13 +91,12 @@ set enabled=no
 /ip firewall service-port
 set [find] disabled=yes
 
-/ip firewall raw
-
 # Limit ICMP directly in kernel
 # icmp-rate-limit is minimum time in ms between ping responses
 /ip settings
 set icmp-rate-limit=100 icmp-rate-mask=0x1939
 
+/ip firewall raw
 # Enable/disable common services as required
 add action=accept chain=prerouting comment="Accept OSPF" in-interface-list=ospf-neighbours protocol=ospf
 add action=accept chain=prerouting comment="Accept BFD" dst-port=3784,4784 in-interface-list=bfd-neighbours protocol=udp
@@ -151,5 +150,6 @@ set [find interface=all] forbid=yes
 # Disable IPv6 ND on all ports
 /ipv6 nd
 set [find interface=all] advertise-dns=no disabled=yes
+
 
 
