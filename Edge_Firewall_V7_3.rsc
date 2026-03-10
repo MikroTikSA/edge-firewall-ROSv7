@@ -110,8 +110,9 @@ add action=accept chain=prerouting comment="Accept VXLAN internal" dst-port=8472
 add action=accept chain=prerouting comment="Accept SSH to router" dst-address-type=local dst-port=22 protocol=tcp src-address-list=management 
 add action=accept chain=prerouting comment="Accept SSH by address list from external source" dst-address-type=!local dst-port=22 protocol=tcp src-address-list=ssh-allowed
 add action=accept chain=prerouting comment="Accept SSH by address list to internal client" dst-address-type=!local dst-port=22 protocol=tcp dst-address-list=ssh-allowed-in
-add action=accept chain=prerouting dst-port=123 protocol=udp src-address-list=time-servers
-add action=accept chain=prerouting protocol=udp src-address-list=time-servers src-port=123
+add action=accept chain=prerouting comment="Allow limited input ICMP" dst-address-type=local protocol=icmp
+add action=accept chain=prerouting comment="Allow NTP" dst-port=123 protocol=udp src-address-list=time-servers
+add action=accept chain=prerouting comment="Allow NTP" protocol=udp src-address-list=time-servers src-port=123
 add action=accept chain=prerouting comment="Accept Winbox to router" dst-address-type=local dst-port=8291 in-interface-list=management protocol=tcp src-address-list=management
 add action=accept chain=prerouting comment="Accept external DNS by list" protocol=udp src-address-list=dns-allowed src-port=53
 add action=accept chain=prerouting comment="Accept MikroTik Update" src-address-list=mik-update
@@ -150,4 +151,5 @@ set [find interface=all] forbid=yes
 # Disable IPv6 ND on all ports
 /ipv6 nd
 set [find interface=all] advertise-dns=no disabled=yes
+
 
